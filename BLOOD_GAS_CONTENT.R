@@ -1,14 +1,19 @@
+## implementation of general mathematical model for hemoglobin O2 saturation, O2 blood content and CO2 blood content
+## 2021-07-01 Matthias P Hilty
 
+## example scenario: plot blood O2 and CO2 content as function of partial pressure
 
-## plot blood O2 and CO2 content as function of partial pressure
-
+## -----------------------------
+## package management
+## -----------------------------
 if(!require(ggplot2)){
 	install.packages("ggplot2")
 	library(ggplot2)
 }
 
-## plot functions
-
+## -----------------------------
+## mathematical model: function definiton
+## -----------------------------
 ## define o2 function(ref:1. Siggaard-Andersen O, Wimberley PD, Göthgen I, Siggaard-Andersen M. A mathematical model of the hemoglobin-oxygen dissociation curve of human blood and of the oxygen partial pressure as a function of temperature. Clin. Chem. 1984; 30: 1646–1651.)
 SatO2 <- function(x, pH=7.4, T=37, cbase=0, cdpg=1.5, y0=1.875, k=0.5343){
     ## x is PO2
@@ -45,6 +50,14 @@ ConcCO2 <- function(x, pH=7.4, SatO2=0.96, Hct=0.4, T=37){
     return((Hct*co2cells+(1-Hct)*co2plasma)*2.22*10)
 }
 
+
+
+## -----------------------------
+## -----------------------------
+## implementation examples: plot blood O2 and CO2 content as function of partial pressure
+## -----------------------------
+## -----------------------------
+
 ## -----------------------------
 ## plot curves
 ## -----------------------------
@@ -56,7 +69,7 @@ p <- p + xlab(expression(paste("",O[2], " and ",CO[2], " partial pressure [kPa]"
 p <- p + ylab(expression(paste("",O[2], " and ",CO[2], " content [ml/l]")))
 p <- p + xlim(0, 11) + ylim(0, 500)
 print(p)
-ggsave("FIGURE2.pdf", p)
+ggsave("bloodgascontent.pdf", p)
 
 ## -----------------------------
 ## plot curves with pH range
@@ -91,5 +104,4 @@ p <- p + scale_color_manual(name = "", values = c("black", "grey"), labels = c("
 p <- p + xlab(expression(paste("",O[2], " and ",CO[2], " partial pressure [kPa]")))
 p <- p + ylab(expression(paste("",O[2], " and ",CO[2], " content [ml/l]")))
 print(p)
-ggsave("FIGURE2b.pdf", p)
-ggsave("FIGURE2b.png", p)
+ggsave("bloodgascontent_ph.pdf", p)
