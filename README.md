@@ -1,9 +1,11 @@
 # bloodgascontent
 Mathematical models for blood O2 saturation and content and CO2 content
+
 2021-07-05, Matthias P. Hilty
 
 The code has been created as part of a biomedical research project at the University of Zurich / University Hospital of Zurich:
 https://www.researchgate.net/project/Extracorporeal-CO2-removal-in-hypercapnic-respiratory-failure
+
 It may be used under the terms of the accompanying licence, while this repository must always be referenced.
 Scientific publications using this work or parts of this work must cite this repository.
 
